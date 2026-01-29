@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Games — Celestial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1 class="brand">Games</h1>
+    <div class="search">
+      <input type="search" placeholder="Search games..." id="search" />
+    </div>
+  </header>
+
+  <main class="grid-wrap">
+    <section class="games-grid" id="gamesGrid">
+      <!-- sample cards -->
+      <!-- We'll render multiple placeholders to match the attached layout -->
+      <template id="cardT">
+        <article class="game-card" tabindex="0">
+          <div class="thumb" role="img" aria-label="game thumbnail"></div>
+          <div class="card-overlay">
+            <button class="play-btn" title="Play">►</button>
+            <button class="more-btn" title="More">⋯</button>
+          </div>
+          <div class="meta">
+            <a class="title" href="#">Game title</a>
+            <div class="info">
+              <span class="rating">★ 4.6</span>
+              <span class="tags">Arcade · 1P</span>
+            </div>
+          </div>
+        </article>
+      </template>
+    </section>
+
+    <aside class="rail">
+      <button title="Home" class="rail-btn">🏠</button>
+      <button title="Playlists" class="rail-btn">🎮</button>
+      <button title="Collections" class="rail-btn">📚</button>
+      <button title="Tools" class="rail-btn">⚙️</button>
+      <button title="Chat" class="rail-btn">💬</button>
+    </aside>
+  </main>
+
+  <script>
+    // populate cards to demo layout (24 tiles)
+    const tpl = document.getElementById('cardT');
+    const grid = document.getElementById('gamesGrid');
+    for (let i = 1; i <= 24; i++) {
+      const node = tpl.content.cloneNode(true);
+      const title = node.querySelector('.title');
+      const thumb = node.querySelector('.thumb');
+      const rating = node.querySelector('.rating');
+      const tags = node.querySelector('.tags');
+
+      title.textContent = (i === 1) ? 'Game Suggestions' : 'Game ' + i;
+      rating.textContent = '★ ' + (Math.round((3.5 + (i % 3) * 0.7) * 10) / 10);
+      tags.textContent = (i % 2 === 0) ? 'Arcade · 1P' : 'Puzzle · 2P';
+
+      // set some visual variety using gradients for the thumb
+      const variants = [
+        '#12202a,#0b132b',
+        '#07193a,#1b2735',
+        '#1b0f2a,#2a1b3d',
+        '#021024,#11303a',
+        '#08121b,#2b0f1f'
+      ];
+      thumb.style.background = `linear-gradient(135deg, ${variants[i % variants.length]})`;
+
+      grid.appendChild(node);
+    }
+
+    // simple search filter
+    document.getElementById('search').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('.game-card').forEach(card => {
+        const t = card.querySelector('.title').textContent.toLowerCase();
+        card.style.display = q && !t.includes(q) ? 'none' : '';
+      });
+    });
+  </script>
+</body>
+</html>

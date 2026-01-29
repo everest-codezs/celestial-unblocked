@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Homepage</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at bottom, #0b0c1c 0%, #000000 100%);
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    .planet {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff6f61, #800000);
+      top: 20%;
+      left: 70%;
+      animation: float 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(20px); }
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #fff, 0 0 20px #8b5cf6, 0 0 30px #7c3aed;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #c7b3ff;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 1em;
+      color: #fff;
+      background: #7c3aed;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #7c3aed;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5b21b6;
+      box-shadow: 0 0 20px #7c3aed;
+    }
+  </style>
+</head>
+<body>
+  <!-- Stars -->
+  <div class="star" style="top: 10%; left: 20%;"></div>
+  <div class="star" style="top: 30%; left: 80%;"></div>
+  <div class="star" style="top: 50%; left: 40%;"></div>
+  <div class="star" style="top: 70%; left: 60%;"></div>
+  <div class="star" style="top: 90%; left: 10%;"></div>
+
+  <!-- Planet -->
+  <div class="planet"></div>
+
+  <!-- Main content -->
+  <h1>Welcome to Space</h1>
+  <p>Explore the cosmos from your browser.</p>
+  <button onclick="alert('Let’s get started!')">Get Started</button>
+</body>
+</html>
